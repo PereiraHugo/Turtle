@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.topPanel = new System.Windows.Forms.Panel();
             this.angleNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
@@ -46,15 +47,21 @@
             this.authorLabel = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
             this.centerPanel = new System.Windows.Forms.Panel();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.lengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lengthLabel = new System.Windows.Forms.Label();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.angleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeatNumericUpDown)).BeginInit();
             this.botPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.Silver;
+            this.topPanel.Controls.Add(this.lengthNumericUpDown);
+            this.topPanel.Controls.Add(this.lengthLabel);
             this.topPanel.Controls.Add(this.angleNumericUpDown);
             this.topPanel.Controls.Add(this.angleLabel);
             this.topPanel.Controls.Add(this.positionList);
@@ -75,7 +82,8 @@
             // 
             // angleNumericUpDown
             // 
-            this.angleNumericUpDown.Location = new System.Drawing.Point(830, 32);
+            this.helpProvider1.SetHelpString(this.angleNumericUpDown, "Set the angle to each turn action.");
+            this.angleNumericUpDown.Location = new System.Drawing.Point(870, 32);
             this.angleNumericUpDown.Maximum = new decimal(new int[] {
             360,
             0,
@@ -87,6 +95,7 @@
             0,
             0});
             this.angleNumericUpDown.Name = "angleNumericUpDown";
+            this.helpProvider1.SetShowHelp(this.angleNumericUpDown, true);
             this.angleNumericUpDown.Size = new System.Drawing.Size(40, 20);
             this.angleNumericUpDown.TabIndex = 12;
             this.angleNumericUpDown.Value = new decimal(new int[] {
@@ -99,7 +108,7 @@
             // 
             this.angleLabel.AutoSize = true;
             this.angleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.angleLabel.Location = new System.Drawing.Point(826, 9);
+            this.angleLabel.Location = new System.Drawing.Point(866, 9);
             this.angleLabel.Name = "angleLabel";
             this.angleLabel.Size = new System.Drawing.Size(105, 20);
             this.angleLabel.TabIndex = 11;
@@ -110,6 +119,7 @@
             this.positionList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.positionList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.positionList.FormattingEnabled = true;
+            this.helpProvider1.SetHelpString(this.positionList, "Set the start position for the drawing.");
             this.positionList.ItemHeight = 16;
             this.positionList.Items.AddRange(new object[] {
             "Bottom",
@@ -119,6 +129,7 @@
             "Right"});
             this.positionList.Location = new System.Drawing.Point(1014, 32);
             this.positionList.Name = "positionList";
+            this.helpProvider1.SetShowHelp(this.positionList, true);
             this.positionList.Size = new System.Drawing.Size(119, 24);
             this.positionList.TabIndex = 10;
             this.positionList.SelectedIndexChanged += new System.EventHandler(this.positionList_SelectedIndexChanged);
@@ -135,7 +146,8 @@
             // 
             // repeatNumericUpDown
             // 
-            this.repeatNumericUpDown.Location = new System.Drawing.Point(585, 32);
+            this.helpProvider1.SetHelpString(this.repeatNumericUpDown, "Set the repeat number to draw the pattern.");
+            this.repeatNumericUpDown.Location = new System.Drawing.Point(538, 32);
             this.repeatNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -147,6 +159,7 @@
             0,
             0});
             this.repeatNumericUpDown.Name = "repeatNumericUpDown";
+            this.helpProvider1.SetShowHelp(this.repeatNumericUpDown, true);
             this.repeatNumericUpDown.Size = new System.Drawing.Size(40, 20);
             this.repeatNumericUpDown.TabIndex = 8;
             this.repeatNumericUpDown.Value = new decimal(new int[] {
@@ -176,8 +189,10 @@
             // 
             // patternBox
             // 
+            this.helpProvider1.SetHelpString(this.patternBox, "Enter the pattern in this box.");
             this.patternBox.Location = new System.Drawing.Point(337, 32);
             this.patternBox.Name = "patternBox";
+            this.helpProvider1.SetShowHelp(this.patternBox, true);
             this.patternBox.Size = new System.Drawing.Size(156, 20);
             this.patternBox.TabIndex = 4;
             this.patternBox.TextChanged += new System.EventHandler(this.patternBox_TextChanged);
@@ -197,18 +212,20 @@
             // informationLabel
             // 
             this.informationLabel.AutoSize = true;
-            this.informationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.informationLabel.Location = new System.Drawing.Point(23, 21);
+            this.informationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.informationLabel.Location = new System.Drawing.Point(37, 4);
             this.informationLabel.Name = "informationLabel";
-            this.informationLabel.Size = new System.Drawing.Size(148, 24);
+            this.informationLabel.Size = new System.Drawing.Size(259, 80);
             this.informationLabel.TabIndex = 2;
-            this.informationLabel.Text = "informationLabel";
+            this.informationLabel.Text = "Build a pattern with thoses symbols :\n S for Straigth, L for Left, R for Right\n a" +
+    "nd the parenthesis (). The Turtle will draw\n your pattern on the panel. You can " +
+    "try\n the random pattern too.";
             // 
             // repeatLabel
             // 
             this.repeatLabel.AutoSize = true;
             this.repeatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repeatLabel.Location = new System.Drawing.Point(581, 9);
+            this.repeatLabel.Location = new System.Drawing.Point(534, 9);
             this.repeatLabel.Name = "repeatLabel";
             this.repeatLabel.Size = new System.Drawing.Size(170, 20);
             this.repeatLabel.TabIndex = 1;
@@ -279,6 +296,35 @@
             this.centerPanel.Size = new System.Drawing.Size(1305, 336);
             this.centerPanel.TabIndex = 2;
             this.centerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.centerPanel_Paint);
+            //
+            // lengthNumericUpDown
+            // 
+            this.helpProvider1.SetHelpString(this.lengthNumericUpDown, "Set the repeat number to draw the pattern.");
+            this.lengthNumericUpDown.Location = new System.Drawing.Point(728, 32);
+            this.lengthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lengthNumericUpDown.Name = "numericUpDown1";
+            this.helpProvider1.SetShowHelp(this.lengthNumericUpDown, true);
+            this.lengthNumericUpDown.Size = new System.Drawing.Size(40, 20);
+            this.lengthNumericUpDown.TabIndex = 14;
+            this.lengthNumericUpDown.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // lengthLabel
+            // 
+            this.lengthLabel.AutoSize = true;
+            this.lengthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lengthLabel.Location = new System.Drawing.Point(724, 9);
+            this.lengthLabel.Name = "label1";
+            this.lengthLabel.Size = new System.Drawing.Size(116, 20);
+            this.lengthLabel.TabIndex = 13;
+            this.lengthLabel.Text = "Which Length?";
             // 
             // MainWindow
             // 
@@ -288,19 +334,22 @@
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.botPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.Text = "Turtle";
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.angleNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeatNumericUpDown)).EndInit();
             this.botPanel.ResumeLayout(false);
             this.botPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
         private System.Windows.Forms.Panel topPanel;
         private System.Windows.Forms.Panel botPanel;
@@ -325,5 +374,7 @@
         private System.Windows.Forms.NumericUpDown angleNumericUpDown;
 
         private System.Windows.Forms.ComboBox positionList;
+        private System.Windows.Forms.NumericUpDown lengthNumericUpDown;
+        private System.Windows.Forms.Label lengthLabel;
     }
 }

@@ -18,11 +18,9 @@ namespace Turtle
         Graphics g = null;
 
         static int branch_start_x, branch_start_y;
-        static int start_x, start_y;
+        static int start_x, start_y, chosenAngle, chosenLength, previousAngle;
         static int end_x, end_y;
-
-        static int chosenAngle = 0;
-        static int my_length = 0;
+        
         static int my_increment = 0;
         static int num_lines = 0;
 
@@ -31,6 +29,7 @@ namespace Turtle
         public MainWindow()
         {
             InitializeComponent();
+            startButton.Enabled = false;
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -40,19 +39,16 @@ namespace Turtle
                 System.Windows.Forms.MessageBox.Show("Check the pattern given !!\nInvalid character given (character allowed : a-zA-Z and parenthesis) or parenthesis not open/closed");
                 return;
             }
+            DetectStartPosition();
+            DetectLength();
             pattern.SetCharList(patternBox.Text);
             centerPanel.Refresh();
             g = centerPanel.CreateGraphics();
-            foreach(char mouvement in pattern.GetCharList())
-            {
-                Draw(mouvement.ToString());
-            }
-            DetectStartPosition();
+            Draw(pattern.GetCharList(), chosenAngle, (int)repeatNumericUpDown.Value, chosenLength);
         }
 
         private void randomButton_Click(object sender, EventArgs e)
         {
-
             pattern.SetRandomCharList();
             patternBox.Text = pattern.GetCharList();
             ReponseCheckBrackets();
@@ -67,6 +63,10 @@ namespace Turtle
         private void positionList_SelectedIndexChanged(object sender, EventArgs e)
         {
             DetectStartPosition();
+            if (repBraPanel.BackColor == Color.Green)
+            {
+                startButton.Enabled = true;
+            }
         }
 
         private void ReponseCheckBrackets()
@@ -89,49 +89,51 @@ namespace Turtle
 
         }
 
-        private void Draw(string action)
+        private void Draw(string partern, int angle, int repeats, int length)
         {
-            if (action == "R")
+            foreach (char action in pattern.GetCharList())
             {
-                chosenAngle = chosenAngle + (int)angleNumericUpDown.Value;
-            }
-            else if(action == "L")
-            {
-                chosenAngle = chosenAngle + 360 - (int)angleNumericUpDown.Value;
-            }
-            else if (action =="(")
-            {
-                branch_start_x = start_x;
-                branch_start_y = start_y;
-                return;
-            }
-            else if (action == ")")
-            {
-                start_x = branch_start_x;
-                start_y = branch_start_y;
-                return;
-            }
-            else
-            {
-                chosenAngle = 0;
-            }
-            
-            int lengthStatic = 20;
+                if (action.Equals('R'))
+                {
+                    angle = angle + (int)angleNumericUpDown.Value;
+                }
+                else if (action.Equals('L'))
+                {
+                    angle = angle + 360 - (int)angleNumericUpDown.Value;
+                }
+                else if (action.Equals('('))
+                {
+                    branch_start_x = start_x;
+                    branch_start_y = start_y;
+                }
+                else if (action.Equals(')'))
+                {
+                    start_x = branch_start_x;
+                    start_y = branch_start_y;
+                }
+                
+                if (action.Equals('R') || action.Equals('L') || action.Equals('S'))
+                {
+                    // Modifiy Cos and Sin for each start
+                    end_x = (int)(start_x + Math.Cos(angle * .017453292519) * length);
+                    end_y = (int)(start_y + Math.Sin(angle * .017453292519) * length);
 
-            // Modifiy Cos and Sin for each start
-            end_x = (int)(start_x + Math.Cos(chosenAngle * .017453292519) * lengthStatic);
-            end_y = (int)(start_y + Math.Sin(chosenAngle * .017453292519) * lengthStatic);
-
-            Point[] points =
-             {
-                new Point(start_x, start_y),
-                new Point(end_x, end_y),
-            };
-
-            start_x = end_x;
-            start_y = end_y;
-            g.DrawLines(myPen, points);
+                    Point[] points = {
+                        new Point(start_x, start_y),
+                        new Point(end_x, end_y),
+                    };
+                    start_x = end_x;
+                    start_y = end_y;
+                    g.DrawLines(myPen, points);
+                }
+            }
             return;
+        }
+
+
+        private void DetectLength()
+        {
+            chosenLength = (int)lengthNumericUpDown.Value;
         }
 
         private void DetectStartPosition()
@@ -141,6 +143,7 @@ namespace Turtle
             {
                 start_x = centerPanel.Width / 2;
                 start_y = centerPanel.Height;
+                chosenAngle = 270;
             }
             else if (positionSelected == "Center")
             {
@@ -151,16 +154,19 @@ namespace Turtle
             {
                 start_x = 0;
                 start_y = centerPanel.Height / 2;
+                chosenAngle = 0;
             }
             else if (positionSelected == "Right")
             {
                 start_x = centerPanel.Width;
                 start_y = centerPanel.Height / 2;
+                chosenAngle = 180;
             }
             else if (positionSelected == "Top")
             {
                 start_x = centerPanel.Width / 2;
                 start_y = 0;
+                chosenAngle = 90;
             }
         }
     }
