@@ -1,6 +1,6 @@
 # Turtle
 
-One Paragraph of project description goes here
+This app will draw following the pattern given. The user can run the app with random pattern.
 
 ## Getting Started
 
