@@ -1,6 +1,6 @@
 # Turtle
 
-This app will draw following the pattern given. The user can run the app with random pattern.
+This app will draw following the given pattern. The user can run the app with random patterns.
 
 ## Getting Started
 
@@ -8,17 +8,17 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project was develop under Visual Studio 2017. The corresponding c++ may be important.
+This project was developed under Visual Studio 2017. The corresponding c++ may be important.
 
 Start a C++ project on Visual Studio 2017 as a form Window.
 
 ## Code
 
-Replace the code to the corresponding files. The "main window" will be called Form 1 if you don't change it while starting the project
+Replace the code to the corresponding files. The "main window" will be called Form 1 if you don't change it while starting the project.
 
 ## Running the program
 
-The program is a standalone .exe. You can launch it where you want.
+The program is a standalone .exe. You can launch it wherever you want.
 
 ## Authors
 
