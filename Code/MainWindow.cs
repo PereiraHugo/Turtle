@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Turtle
 {
@@ -24,7 +26,7 @@ namespace Turtle
         static int my_increment = 0;
         static int num_lines = 0;
 
-        CharacterList pattern = new CharacterList();
+        UserString pattern = new UserString();
 
         public MainWindow()
         {
@@ -41,23 +43,65 @@ namespace Turtle
             }
             DetectStartPosition();
             DetectLength();
-            pattern.SetCharList(patternBox.Text);
+            pattern.Userstr = patternBox.Text;
             centerPanel.Refresh();
             g = centerPanel.CreateGraphics();
-            Draw(pattern.GetCharList(), chosenAngle, (int)repeatNumericUpDown.Value, chosenLength);
+            Draw(pattern.Userstr, chosenAngle, (int)repeatNumericUpDown.Value, chosenLength);
         }
 
         private void randomButton_Click(object sender, EventArgs e)
         {
             pattern.SetRandomCharList();
-            patternBox.Text = pattern.GetCharList();
+            patternBox.Text = pattern.Userstr;
             ReponseCheckBrackets();
         }
 
         private void patternBox_TextChanged(object sender, EventArgs e)
         {
-            pattern.SetCharList(patternBox.Text);
+            pattern.Userstr = patternBox.Text;
             ReponseCheckBrackets();
+        }
+
+        private void topPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void examplesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //XmlDocument examplesData = new XmlDocument();
+            //examplesData.Load("ExamplesData.xml");
+            XElement examplesData = XElement.Parse(Properties.Resources.ExamplesData);
+            switch (examplesComboBox.Text)
+            {
+                case "Plante":
+                    ExamplesDataToMainWindows("Plante", examplesData);
+                    break;
+                case "Koch curve":
+                    ExamplesDataToMainWindows("Koch", examplesData);
+                    break;
+                case "Dragon curve":
+                    ExamplesDataToMainWindows("Dragon", examplesData);
+                    break;
+                case "Sierpinski triangle":
+                    ExamplesDataToMainWindows("Sierpinski", examplesData);
+                    break;
+                case "Fractal":
+                    ExamplesDataToMainWindows("Fractal", examplesData);
+                    break;
+                default:
+                    patternBox.Text = "";
+                    ruleKey1.Text = "";
+                    ruleKey2.Text = "";
+                    ruleValue1.Text = "";
+                    ruleValue2.Text = "";
+                    break;
+            }
         }
 
         private void positionList_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,7 +117,6 @@ namespace Turtle
         {
             var respBrackets = pattern.CheckParentheses();
             var respFormat = pattern.CheckFormat();
-
             if (respBrackets == true && respFormat == true)
             {
                 repBraPanel.BackColor = Color.Green;
@@ -91,28 +134,28 @@ namespace Turtle
 
         private void Draw(string partern, int angle, int repeats, int length)
         {
-            foreach (char action in pattern.GetCharList())
+            foreach (char action in pattern.Userstr)
             {
-                if (action.Equals('R'))
+                if (action.Equals('+'))
                 {
                     angle = angle + (int)angleNumericUpDown.Value;
                 }
-                else if (action.Equals('L'))
+                else if (action.Equals('-'))
                 {
                     angle = angle + 360 - (int)angleNumericUpDown.Value;
                 }
-                else if (action.Equals('('))
+                else if (action.Equals('['))
                 {
                     branch_start_x = start_x;
                     branch_start_y = start_y;
                 }
-                else if (action.Equals(')'))
+                else if (action.Equals(']'))
                 {
                     start_x = branch_start_x;
                     start_y = branch_start_y;
                 }
                 
-                if (action.Equals('R') || action.Equals('L') || action.Equals('S'))
+                if (action.Equals('+') || action.Equals('-') || action.Equals('S'))
                 {
                     // Modifiy Cos and Sin for each start
                     end_x = (int)(start_x + Math.Cos(angle * .017453292519) * length);
@@ -167,6 +210,27 @@ namespace Turtle
                 start_x = centerPanel.Width / 2;
                 start_y = 0;
                 chosenAngle = 90;
+            }
+        }
+
+        private void ExamplesDataToMainWindows(string exampleName, XElement fullExamplesXml)
+        {
+            patternBox.Text = fullExamplesXml.Element(exampleName).Element("seed").Value;
+            var rules = fullExamplesXml.Element(exampleName).Element("rules").Elements();
+            var flag = 1;
+            foreach (XElement el in rules)
+            {
+                if (flag == 1)
+                {
+                    ruleKey1.Text = el.Name.ToString();
+                    ruleValue1.Text = el.Value;
+                    flag += 1;
+                }
+                else if (flag == 2)
+                {
+                    ruleKey2.Text = el.Name.ToString();
+                    ruleValue2.Text = el.Value;
+                }
             }
         }
     }

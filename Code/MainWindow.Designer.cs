@@ -1,4 +1,4 @@
-namespace Turtle
+﻿namespace Turtle
 {
     partial class MainWindow
     {
@@ -30,6 +30,17 @@ namespace Turtle
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.examplesComboBox = new System.Windows.Forms.ComboBox();
+            this.exampleLabel = new System.Windows.Forms.Label();
+            this.valuesLabel = new System.Windows.Forms.Label();
+            this.keyLabel = new System.Windows.Forms.Label();
+            this.RulesLabel = new System.Windows.Forms.Label();
+            this.ruleValue2 = new System.Windows.Forms.TextBox();
+            this.ruleKey2 = new System.Windows.Forms.TextBox();
+            this.ruleValue1 = new System.Windows.Forms.TextBox();
+            this.ruleKey1 = new System.Windows.Forms.TextBox();
+            this.lengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lengthLabel = new System.Windows.Forms.Label();
             this.angleNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
             this.positionList = new System.Windows.Forms.ComboBox();
@@ -39,7 +50,6 @@ namespace Turtle
             this.randomButton = new System.Windows.Forms.Button();
             this.patternBox = new System.Windows.Forms.TextBox();
             this.startButton = new System.Windows.Forms.Button();
-            this.informationLabel = new System.Windows.Forms.Label();
             this.repeatLabel = new System.Windows.Forms.Label();
             this.patternLabel = new System.Windows.Forms.Label();
             this.botPanel = new System.Windows.Forms.Panel();
@@ -48,18 +58,25 @@ namespace Turtle
             this.versionLabel = new System.Windows.Forms.Label();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.lengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.lengthLabel = new System.Windows.Forms.Label();
             this.topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeatNumericUpDown)).BeginInit();
             this.botPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.Silver;
+            this.topPanel.Controls.Add(this.examplesComboBox);
+            this.topPanel.Controls.Add(this.exampleLabel);
+            this.topPanel.Controls.Add(this.valuesLabel);
+            this.topPanel.Controls.Add(this.keyLabel);
+            this.topPanel.Controls.Add(this.RulesLabel);
+            this.topPanel.Controls.Add(this.ruleValue2);
+            this.topPanel.Controls.Add(this.ruleKey2);
+            this.topPanel.Controls.Add(this.ruleValue1);
+            this.topPanel.Controls.Add(this.ruleKey1);
             this.topPanel.Controls.Add(this.lengthNumericUpDown);
             this.topPanel.Controls.Add(this.lengthLabel);
             this.topPanel.Controls.Add(this.angleNumericUpDown);
@@ -71,7 +88,6 @@ namespace Turtle
             this.topPanel.Controls.Add(this.randomButton);
             this.topPanel.Controls.Add(this.patternBox);
             this.topPanel.Controls.Add(this.startButton);
-            this.topPanel.Controls.Add(this.informationLabel);
             this.topPanel.Controls.Add(this.repeatLabel);
             this.topPanel.Controls.Add(this.patternLabel);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -79,11 +95,129 @@ namespace Turtle
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(1305, 87);
             this.topPanel.TabIndex = 1;
+            this.topPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.topPanel_Paint);
+            // 
+            // examplesComboBox
+            // 
+            this.examplesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.examplesComboBox.FormattingEnabled = true;
+            this.helpProvider1.SetHelpString(this.examplesComboBox, "You can choose an example in the list.");
+            this.examplesComboBox.Items.AddRange(new object[] {
+            "",
+            "Plante",
+            "Koch curve",
+            "Dragon curve",
+            "Sierpinski triangle"
+            });
+            this.examplesComboBox.Location = new System.Drawing.Point(517, 39);
+            this.examplesComboBox.Name = "examplesComboBox";
+            this.helpProvider1.SetShowHelp(this.examplesComboBox, true);
+            this.examplesComboBox.Size = new System.Drawing.Size(75, 21);
+            this.examplesComboBox.TabIndex = 23;
+            this.examplesComboBox.SelectedIndexChanged += new System.EventHandler(this.examplesComboBox_SelectedIndexChanged);
+            // 
+            // exampleLabel
+            // 
+            this.exampleLabel.AutoSize = true;
+            this.exampleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exampleLabel.Location = new System.Drawing.Point(514, 16);
+            this.exampleLabel.Name = "exampleLabel";
+            this.exampleLabel.Size = new System.Drawing.Size(73, 18);
+            this.exampleLabel.TabIndex = 22;
+            this.exampleLabel.Text = "Examples";
+            // 
+            // valuesLabel
+            // 
+            this.valuesLabel.AutoSize = true;
+            this.valuesLabel.Location = new System.Drawing.Point(369, 4);
+            this.valuesLabel.Name = "valuesLabel";
+            this.valuesLabel.Size = new System.Drawing.Size(45, 13);
+            this.valuesLabel.TabIndex = 21;
+            this.valuesLabel.Text = "Values :";
+            // 
+            // keyLabel
+            // 
+            this.keyLabel.AutoSize = true;
+            this.keyLabel.Location = new System.Drawing.Point(306, 4);
+            this.keyLabel.Name = "keyLabel";
+            this.keyLabel.Size = new System.Drawing.Size(36, 13);
+            this.keyLabel.TabIndex = 20;
+            this.keyLabel.Text = "Keys :";
+            // 
+            // RulesLabel
+            // 
+            this.RulesLabel.AutoSize = true;
+            this.RulesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RulesLabel.Location = new System.Drawing.Point(209, 9);
+            this.RulesLabel.Name = "RulesLabel";
+            this.RulesLabel.Size = new System.Drawing.Size(91, 40);
+            this.RulesLabel.TabIndex = 19;
+            this.RulesLabel.Text = "Create your\r\nrules :";
+            this.RulesLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // ruleValue2
+            // 
+            this.ruleValue2.Location = new System.Drawing.Point(369, 55);
+            this.ruleValue2.Name = "ruleValue2";
+            this.ruleValue2.Size = new System.Drawing.Size(100, 20);
+            this.ruleValue2.TabIndex = 18;
+            // 
+            // ruleKey2
+            // 
+            this.ruleKey2.Location = new System.Drawing.Point(309, 55);
+            this.ruleKey2.MaxLength = 3;
+            this.ruleKey2.Name = "ruleKey2";
+            this.ruleKey2.Size = new System.Drawing.Size(36, 20);
+            this.ruleKey2.TabIndex = 17;
+            // 
+            // ruleValue1
+            // 
+            this.ruleValue1.Location = new System.Drawing.Point(369, 23);
+            this.ruleValue1.Name = "ruleValue1";
+            this.ruleValue1.Size = new System.Drawing.Size(100, 20);
+            this.ruleValue1.TabIndex = 16;
+            // 
+            // ruleKey1
+            // 
+            this.ruleKey1.Location = new System.Drawing.Point(309, 23);
+            this.ruleKey1.MaxLength = 3;
+            this.ruleKey1.Name = "ruleKey1";
+            this.ruleKey1.Size = new System.Drawing.Size(36, 20);
+            this.ruleKey1.TabIndex = 15;
+            // 
+            // lengthNumericUpDown
+            // 
+            this.helpProvider1.SetHelpString(this.lengthNumericUpDown, "Set the repeat number to draw the pattern.");
+            this.lengthNumericUpDown.Location = new System.Drawing.Point(808, 39);
+            this.lengthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lengthNumericUpDown.Name = "lengthNumericUpDown";
+            this.helpProvider1.SetShowHelp(this.lengthNumericUpDown, true);
+            this.lengthNumericUpDown.Size = new System.Drawing.Size(40, 20);
+            this.lengthNumericUpDown.TabIndex = 14;
+            this.lengthNumericUpDown.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // lengthLabel
+            // 
+            this.lengthLabel.AutoSize = true;
+            this.lengthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lengthLabel.Location = new System.Drawing.Point(804, 16);
+            this.lengthLabel.Name = "lengthLabel";
+            this.lengthLabel.Size = new System.Drawing.Size(116, 20);
+            this.lengthLabel.TabIndex = 13;
+            this.lengthLabel.Text = "Which Length?";
             // 
             // angleNumericUpDown
             // 
             this.helpProvider1.SetHelpString(this.angleNumericUpDown, "Set the angle to each turn action.");
-            this.angleNumericUpDown.Location = new System.Drawing.Point(870, 32);
+            this.angleNumericUpDown.Location = new System.Drawing.Point(939, 39);
             this.angleNumericUpDown.Maximum = new decimal(new int[] {
             360,
             0,
@@ -108,7 +242,7 @@ namespace Turtle
             // 
             this.angleLabel.AutoSize = true;
             this.angleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.angleLabel.Location = new System.Drawing.Point(866, 9);
+            this.angleLabel.Location = new System.Drawing.Point(935, 16);
             this.angleLabel.Name = "angleLabel";
             this.angleLabel.Size = new System.Drawing.Size(105, 20);
             this.angleLabel.TabIndex = 11;
@@ -127,7 +261,7 @@ namespace Turtle
             "Center",
             "Left",
             "Right"});
-            this.positionList.Location = new System.Drawing.Point(1014, 32);
+            this.positionList.Location = new System.Drawing.Point(1054, 39);
             this.positionList.Name = "positionList";
             this.helpProvider1.SetShowHelp(this.positionList, true);
             this.positionList.Size = new System.Drawing.Size(119, 24);
@@ -138,7 +272,7 @@ namespace Turtle
             // 
             this.positionLabel.AutoSize = true;
             this.positionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.positionLabel.Location = new System.Drawing.Point(1006, 9);
+            this.positionLabel.Location = new System.Drawing.Point(1046, 16);
             this.positionLabel.Name = "positionLabel";
             this.positionLabel.Size = new System.Drawing.Size(175, 20);
             this.positionLabel.TabIndex = 9;
@@ -147,7 +281,7 @@ namespace Turtle
             // repeatNumericUpDown
             // 
             this.helpProvider1.SetHelpString(this.repeatNumericUpDown, "Set the repeat number to draw the pattern.");
-            this.repeatNumericUpDown.Location = new System.Drawing.Point(538, 32);
+            this.repeatNumericUpDown.Location = new System.Drawing.Point(621, 39);
             this.repeatNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -171,7 +305,7 @@ namespace Turtle
             // repBraPanel
             // 
             this.repBraPanel.AutoSize = true;
-            this.repBraPanel.Location = new System.Drawing.Point(499, 28);
+            this.repBraPanel.Location = new System.Drawing.Point(178, 28);
             this.repBraPanel.Name = "repBraPanel";
             this.repBraPanel.Size = new System.Drawing.Size(15, 15);
             this.repBraPanel.TabIndex = 7;
@@ -179,7 +313,7 @@ namespace Turtle
             // randomButton
             // 
             this.randomButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.randomButton.Location = new System.Drawing.Point(337, 55);
+            this.randomButton.Location = new System.Drawing.Point(16, 55);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(71, 26);
             this.randomButton.TabIndex = 5;
@@ -190,7 +324,7 @@ namespace Turtle
             // patternBox
             // 
             this.helpProvider1.SetHelpString(this.patternBox, "Enter the pattern in this box.");
-            this.patternBox.Location = new System.Drawing.Point(337, 32);
+            this.patternBox.Location = new System.Drawing.Point(16, 32);
             this.patternBox.Name = "patternBox";
             this.helpProvider1.SetShowHelp(this.patternBox, true);
             this.patternBox.Size = new System.Drawing.Size(156, 20);
@@ -209,23 +343,11 @@ namespace Turtle
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // informationLabel
-            // 
-            this.informationLabel.AutoSize = true;
-            this.informationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.informationLabel.Location = new System.Drawing.Point(37, 4);
-            this.informationLabel.Name = "informationLabel";
-            this.informationLabel.Size = new System.Drawing.Size(259, 80);
-            this.informationLabel.TabIndex = 2;
-            this.informationLabel.Text = "Build a pattern with thoses symbols :\n S for Straigth, L for Left, R for Right\n a" +
-    "nd the parenthesis (). The Turtle will draw\n your pattern on the panel. You can " +
-    "try\n the random pattern too.";
-            // 
             // repeatLabel
             // 
             this.repeatLabel.AutoSize = true;
             this.repeatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repeatLabel.Location = new System.Drawing.Point(534, 9);
+            this.repeatLabel.Location = new System.Drawing.Point(617, 16);
             this.repeatLabel.Name = "repeatLabel";
             this.repeatLabel.Size = new System.Drawing.Size(170, 20);
             this.repeatLabel.TabIndex = 1;
@@ -235,7 +357,7 @@ namespace Turtle
             // 
             this.patternLabel.AutoSize = true;
             this.patternLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.patternLabel.Location = new System.Drawing.Point(333, 9);
+            this.patternLabel.Location = new System.Drawing.Point(12, 9);
             this.patternLabel.Name = "patternLabel";
             this.patternLabel.Size = new System.Drawing.Size(173, 20);
             this.patternLabel.TabIndex = 0;
@@ -296,35 +418,6 @@ namespace Turtle
             this.centerPanel.Size = new System.Drawing.Size(1305, 336);
             this.centerPanel.TabIndex = 2;
             this.centerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.centerPanel_Paint);
-            //
-            // lengthNumericUpDown
-            // 
-            this.helpProvider1.SetHelpString(this.lengthNumericUpDown, "Set the repeat number to draw the pattern.");
-            this.lengthNumericUpDown.Location = new System.Drawing.Point(728, 32);
-            this.lengthNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.lengthNumericUpDown.Name = "numericUpDown1";
-            this.helpProvider1.SetShowHelp(this.lengthNumericUpDown, true);
-            this.lengthNumericUpDown.Size = new System.Drawing.Size(40, 20);
-            this.lengthNumericUpDown.TabIndex = 14;
-            this.lengthNumericUpDown.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            // 
-            // lengthLabel
-            // 
-            this.lengthLabel.AutoSize = true;
-            this.lengthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lengthLabel.Location = new System.Drawing.Point(724, 9);
-            this.lengthLabel.Name = "label1";
-            this.lengthLabel.Size = new System.Drawing.Size(116, 20);
-            this.lengthLabel.TabIndex = 13;
-            this.lengthLabel.Text = "Which Length?";
             // 
             // MainWindow
             // 
@@ -339,11 +432,11 @@ namespace Turtle
             this.Text = "Turtle";
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeatNumericUpDown)).EndInit();
             this.botPanel.ResumeLayout(false);
             this.botPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lengthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,8 +448,6 @@ namespace Turtle
         private System.Windows.Forms.Panel botPanel;
         private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.Panel repBraPanel;
-
-        private System.Windows.Forms.Label informationLabel;
         private System.Windows.Forms.Label repeatLabel;
         private System.Windows.Forms.Label patternLabel;
         private System.Windows.Forms.Label authorLabel;
@@ -376,5 +467,14 @@ namespace Turtle
         private System.Windows.Forms.ComboBox positionList;
         private System.Windows.Forms.NumericUpDown lengthNumericUpDown;
         private System.Windows.Forms.Label lengthLabel;
+        private System.Windows.Forms.Label RulesLabel;
+        private System.Windows.Forms.TextBox ruleValue2;
+        private System.Windows.Forms.TextBox ruleKey2;
+        private System.Windows.Forms.TextBox ruleValue1;
+        private System.Windows.Forms.TextBox ruleKey1;
+        private System.Windows.Forms.Label valuesLabel;
+        private System.Windows.Forms.Label keyLabel;
+        private System.Windows.Forms.ComboBox examplesComboBox;
+        private System.Windows.Forms.Label exampleLabel;
     }
 }
