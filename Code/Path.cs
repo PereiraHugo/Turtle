@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,13 @@ namespace Turtle
 
     class DrawingPath
     {
-        private void Draw(BuildPath path, int angle, int repeats, int length)
+        private void Draw(BuildPath allpath, int angle, int repeats, int length)
         {
+            string path = allpath.Path;
+            Stack<int> stack_x = new Stack<int>();
+            Stack<int> stack_y = new Stack<int>();
+
+
             foreach (char action in path)
             {
                 if (action.Equals('+'))
@@ -33,16 +39,16 @@ namespace Turtle
                 }
                 else if (action.Equals('['))
                 {
-                    branch_start_x = start_x;
-                    branch_start_y = start_y;
+                    stack_x.Push(start_x);
+                    stack_y.Push(start_y);
                 }
                 else if (action.Equals(']'))
                 {
-                    start_x = branch_start_x;
-                    start_y = branch_start_y;
+                    start_x = stack_x.Pop();
+                    start_y = stack_y.Pop();
                 }
 
-                if (action.Equals('+') || action.Equals('-') || action.Equals('S'))
+                if (action.Equals('+') || action.Equals('-') || action.Equals('F'))
                 {
                     // Modifiy Cos and Sin for each start
                     end_x = (int)(start_x + Math.Cos(angle * .017453292519) * length);
@@ -56,8 +62,13 @@ namespace Turtle
                     start_y = end_y;
                     g.DrawLines(myPen, points);
                 }
+                else if (action.Equals('f'))
+                {
+                    continue;
+                }
             }
             return;
         }
     }
+
 }

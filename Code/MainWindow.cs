@@ -100,6 +100,7 @@ namespace Turtle
                     ruleKey2.Text = "";
                     ruleValue1.Text = "";
                     ruleValue2.Text = "";
+                    angleNumericUpDown.Value = 1;
                     break;
             }
         }
@@ -216,6 +217,11 @@ namespace Turtle
         private void ExamplesDataToMainWindows(string exampleName, XElement fullExamplesXml)
         {
             patternBox.Text = fullExamplesXml.Element(exampleName).Element("seed").Value;
+            angleNumericUpDown.Value = new decimal(new int[] {
+            Int32.Parse(fullExamplesXml.Element(exampleName).Element("angle").Value),
+            0,
+            0,
+            0}); 
             var rules = fullExamplesXml.Element(exampleName).Element("rules").Elements();
             var flag = 1;
             foreach (XElement el in rules)

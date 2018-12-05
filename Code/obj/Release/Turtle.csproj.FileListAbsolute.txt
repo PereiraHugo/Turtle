@@ -1,0 +1,9 @@
+C:\Users\pinch\source\repos\Turtle\Turtle\bin\Release\Turtle.exe.config
+C:\Users\pinch\source\repos\Turtle\Turtle\bin\Release\Turtle.exe
+C:\Users\pinch\source\repos\Turtle\Turtle\bin\Release\Turtle.pdb
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.csprojResolveAssemblyReference.cache
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.MainWindow.resources
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.csproj.GenerateResource.cache
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.csproj.CoreCompileInputs.cache
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.exe
+C:\Users\pinch\source\repos\Turtle\Turtle\obj\Release\Turtle.pdb
