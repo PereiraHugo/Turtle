@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace Turtle
 {
@@ -10,7 +11,7 @@ namespace Turtle
     public class L_System
     {
 
-        public List<string> Symbols { get; set; }
+        public Dictionary<string, string> Symbols { get; set; }
         public Dictionary<string, string> Rules { get; set; }
         public String Sentence { get; set; }
         public String Seed { get; set; }
@@ -38,8 +39,40 @@ namespace Turtle
                         nextSentence += current;
                     }
                 }
+                Console.WriteLine(nextSentence);
                 this.Sentence = nextSentence;
             }
+        }
+
+        public Dictionary<string, string> Store_Rules(TextBox ruleKey1, TextBox ruleKey2, TextBox ruleValue1, TextBox ruleValue2)
+        {
+            var dict = new Dictionary<string, string> { };
+            if (ruleKey1.Text != "" && ruleValue1.Text != "")
+            {
+                dict.Add(ruleKey1.Text, ruleValue1.Text);
+            }
+            if (ruleKey2.Text != "" && ruleValue2.Text != "")
+            {
+                dict.Add(ruleKey2.Text, ruleValue2.Text);
+            }
+            return dict;
+        }
+
+        public Dictionary<string, string> Store_Symbols(Stack<TextBox> symbols, Stack<ComboBox> relatedSymbols)
+        {
+            var dict = new Dictionary<string, string> { };
+            while (symbols.Count > 0)
+            {
+                var symbolToAdd = symbols.Pop().Text;
+                var relationToAdd = relatedSymbols.Pop().Text;
+                if (symbolToAdd != "" && relationToAdd != "")
+                {
+                    dict.Add(symbolToAdd, relationToAdd);
+                }
+            }
+            dict.Add("[", "[");
+            dict.Add("]", "]");
+            return dict;
         }
     }
 }

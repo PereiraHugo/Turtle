@@ -72,8 +72,7 @@ namespace Turtle
         /// </summary>
         public void SetRandomCharList()
         {
-            L_System system = new L_System();
-            system.Symbols = new List<string> { "S", "F", "-", "+", "[", "]" };
+            var symbols = new List<string> { "f", "F", "-", "+", "[", "]" };
             int nb_parentheses = 0;
             int index;
             Random r = new Random();
@@ -83,13 +82,13 @@ namespace Turtle
             {
                 if (i == 0 || i >= 5 || Userstr[Userstr.Length - 1].ToString() == "[")
                 {
-                    index = r.Next(system.Symbols.Count - 2);
-                    symbolToAdd = system.Symbols[index];
+                    index = r.Next(symbols.Count - 2);
+                    symbolToAdd = symbols[index];
                 }
                 else if (nb_parentheses < 2)
                 {
-                    index = r.Next(system.Symbols.Count);
-                    symbolToAdd = system.Symbols[index];
+                    index = r.Next(symbols.Count);
+                    symbolToAdd = symbols[index];
                     if (nb_parentheses == 0 && symbolToAdd == "]")
                     {
                         symbolToAdd = "[";

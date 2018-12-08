@@ -30,6 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.relatedSymbol6 = new System.Windows.Forms.ComboBox();
+            this.symbol6 = new System.Windows.Forms.TextBox();
+            this.relatedSymbol5 = new System.Windows.Forms.ComboBox();
+            this.symbol5 = new System.Windows.Forms.TextBox();
+            this.relatedSymbol4 = new System.Windows.Forms.ComboBox();
+            this.symbol4 = new System.Windows.Forms.TextBox();
+            this.relatedSymbol3 = new System.Windows.Forms.ComboBox();
+            this.symbol3 = new System.Windows.Forms.TextBox();
+            this.relatedSymbol2 = new System.Windows.Forms.ComboBox();
+            this.symbol2 = new System.Windows.Forms.TextBox();
+            this.relatedSymbol1 = new System.Windows.Forms.ComboBox();
+            this.symbolLabel = new System.Windows.Forms.Label();
+            this.symbol1 = new System.Windows.Forms.TextBox();
             this.examplesComboBox = new System.Windows.Forms.ComboBox();
             this.exampleLabel = new System.Windows.Forms.Label();
             this.valuesLabel = new System.Windows.Forms.Label();
@@ -68,6 +82,20 @@
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.Color.Silver;
+            this.topPanel.Controls.Add(this.label1);
+            this.topPanel.Controls.Add(this.relatedSymbol6);
+            this.topPanel.Controls.Add(this.symbol6);
+            this.topPanel.Controls.Add(this.relatedSymbol5);
+            this.topPanel.Controls.Add(this.symbol5);
+            this.topPanel.Controls.Add(this.relatedSymbol4);
+            this.topPanel.Controls.Add(this.symbol4);
+            this.topPanel.Controls.Add(this.relatedSymbol3);
+            this.topPanel.Controls.Add(this.symbol3);
+            this.topPanel.Controls.Add(this.relatedSymbol2);
+            this.topPanel.Controls.Add(this.symbol2);
+            this.topPanel.Controls.Add(this.relatedSymbol1);
+            this.topPanel.Controls.Add(this.symbolLabel);
+            this.topPanel.Controls.Add(this.symbol1);
             this.topPanel.Controls.Add(this.examplesComboBox);
             this.topPanel.Controls.Add(this.exampleLabel);
             this.topPanel.Controls.Add(this.valuesLabel);
@@ -93,9 +121,151 @@
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(1305, 87);
+            this.topPanel.Size = new System.Drawing.Size(1305, 122);
             this.topPanel.TabIndex = 1;
-            this.topPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.topPanel_Paint);
+            // 
+            // SepartationLine
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(3, 83);
+            this.label1.Name = "SepartationLine";
+            this.label1.Size = new System.Drawing.Size(1240, 2);
+            this.label1.TabIndex = 41;
+            // 
+            // relatedSymbol6
+            // 
+            this.relatedSymbol6.FormattingEnabled = true;
+            this.relatedSymbol6.Location = new System.Drawing.Point(565, 93);
+            this.relatedSymbol6.Name = "relatedSymbol6";
+            this.relatedSymbol6.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol6.TabIndex = 40;
+            this.relatedSymbol6.Items.AddRange(new object[] {
+            "",
+                "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbol6
+            // 
+            this.symbol6.Location = new System.Drawing.Point(536, 93);
+            this.symbol6.Name = "symbol6";
+            this.symbol6.Size = new System.Drawing.Size(23, 20);
+            this.symbol6.TabIndex = 39;
+            // 
+            // relatedSymbol5
+            // 
+            this.relatedSymbol5.FormattingEnabled = true;
+            this.relatedSymbol5.Location = new System.Drawing.Point(486, 93);
+            this.relatedSymbol5.Name = "relatedSymbol5";
+            this.relatedSymbol5.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol5.TabIndex = 38;
+            this.relatedSymbol5.Items.AddRange(new object[] {
+            "",
+                "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbol5
+            // 
+            this.symbol5.Location = new System.Drawing.Point(457, 93);
+            this.symbol5.Name = "symbol5";
+            this.symbol5.Size = new System.Drawing.Size(23, 20);
+            this.symbol5.TabIndex = 37;
+            // 
+            // relatedSymbol4
+            // 
+            this.relatedSymbol4.FormattingEnabled = true;
+            this.relatedSymbol4.Location = new System.Drawing.Point(408, 93);
+            this.relatedSymbol4.Name = "relatedSymbol4";
+            this.relatedSymbol4.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol4.TabIndex = 34;
+            this.relatedSymbol4.Items.AddRange(new object[] {
+            "",
+                "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbol4
+            // 
+            this.symbol4.Location = new System.Drawing.Point(379, 93);
+            this.symbol4.Name = "symbol4";
+            this.symbol4.Size = new System.Drawing.Size(23, 20);
+            this.symbol4.TabIndex = 33;
+            // 
+            // relatedSymbol3
+            // 
+            this.relatedSymbol3.FormattingEnabled = true;
+            this.relatedSymbol3.Location = new System.Drawing.Point(331, 93);
+            this.relatedSymbol3.Name = "relatedSymbol3";
+            this.relatedSymbol3.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol3.TabIndex = 36;
+            this.relatedSymbol3.Items.AddRange(new object[] {
+                "",
+                "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbol3
+            // 
+            this.symbol3.Location = new System.Drawing.Point(302, 93);
+            this.symbol3.Name = "symbol3";
+            this.symbol3.Size = new System.Drawing.Size(23, 20);
+            this.symbol3.TabIndex = 35;
+            // 
+            // relatedSymbol2
+            // 
+            this.relatedSymbol2.FormattingEnabled = true;
+            this.relatedSymbol2.Location = new System.Drawing.Point(253, 93);
+            this.relatedSymbol2.Name = "relatedSymbol2";
+            this.relatedSymbol2.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol2.TabIndex = 34;
+            this.relatedSymbol2.Items.AddRange(new object[] {
+            "",
+            "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbol2
+            // 
+            this.symbol2.Location = new System.Drawing.Point(224, 93);
+            this.symbol2.Name = "symbol2";
+            this.symbol2.Size = new System.Drawing.Size(23, 20);
+            this.symbol2.TabIndex = 33;
+            // 
+            // relatedSymbol1
+            // 
+            this.relatedSymbol1.FormattingEnabled = true;
+            this.relatedSymbol1.Location = new System.Drawing.Point(176, 93);
+            this.relatedSymbol1.Name = "relatedSymbol1";
+            this.relatedSymbol1.Size = new System.Drawing.Size(36, 21);
+            this.relatedSymbol1.TabIndex = 32;
+            this.relatedSymbol1.Items.AddRange(new object[] {
+            "",
+            "F",
+            "+",
+            "-",
+            "f"});
+            // 
+            // symbolLabel
+            // 
+            this.symbolLabel.AutoSize = true;
+            this.symbolLabel.Location = new System.Drawing.Point(13, 96);
+            this.symbolLabel.Name = "symbolLabel";
+            this.symbolLabel.Size = new System.Drawing.Size(114, 13);
+            this.symbolLabel.TabIndex = 31;
+            this.symbolLabel.Text = "Symbols Associations :";
+            // 
+            // symbol1
+            // 
+            this.symbol1.Location = new System.Drawing.Point(147, 93);
+            this.symbol1.Name = "symbol1";
+            this.symbol1.Size = new System.Drawing.Size(23, 20);
+            this.symbol1.TabIndex = 26;
             // 
             // examplesComboBox
             // 
@@ -107,8 +277,7 @@
             "Plante",
             "Koch curve",
             "Dragon curve",
-            "Sierpinski triangle"
-            });
+            "Sierpinski triangle"});
             this.examplesComboBox.Location = new System.Drawing.Point(517, 39);
             this.examplesComboBox.Name = "examplesComboBox";
             this.helpProvider1.SetShowHelp(this.examplesComboBox, true);
@@ -153,7 +322,6 @@
             this.RulesLabel.Size = new System.Drawing.Size(91, 40);
             this.RulesLabel.TabIndex = 19;
             this.RulesLabel.Text = "Create your\r\nrules :";
-            this.RulesLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ruleValue2
             // 
@@ -337,7 +505,7 @@
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.Location = new System.Drawing.Point(1240, 0);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(65, 87);
+            this.startButton.Size = new System.Drawing.Size(65, 122);
             this.startButton.TabIndex = 3;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
@@ -413,11 +581,10 @@
             // centerPanel
             // 
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(0, 87);
+            this.centerPanel.Location = new System.Drawing.Point(0, 122);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(1305, 336);
+            this.centerPanel.Size = new System.Drawing.Size(1305, 301);
             this.centerPanel.TabIndex = 2;
-            this.centerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.centerPanel_Paint);
             // 
             // MainWindow
             // 
@@ -476,5 +643,19 @@
         private System.Windows.Forms.Label keyLabel;
         private System.Windows.Forms.ComboBox examplesComboBox;
         private System.Windows.Forms.Label exampleLabel;
+        private System.Windows.Forms.Label symbolLabel;
+        private System.Windows.Forms.TextBox symbol1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox relatedSymbol6;
+        private System.Windows.Forms.TextBox symbol6;
+        private System.Windows.Forms.ComboBox relatedSymbol5;
+        private System.Windows.Forms.TextBox symbol5;
+        private System.Windows.Forms.ComboBox relatedSymbol4;
+        private System.Windows.Forms.TextBox symbol4;
+        private System.Windows.Forms.ComboBox relatedSymbol3;
+        private System.Windows.Forms.TextBox symbol3;
+        private System.Windows.Forms.ComboBox relatedSymbol2;
+        private System.Windows.Forms.TextBox symbol2;
+        private System.Windows.Forms.ComboBox relatedSymbol1;
     }
 }

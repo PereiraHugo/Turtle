@@ -19,12 +19,9 @@ namespace Turtle
 
         Graphics g = null;
 
-        static int branch_start_x, branch_start_y;
-        static int start_x, start_y, chosenAngle, chosenLength, previousAngle;
+        static int start_x, start_y, chosenAngle, previousAngle;
+        static Int16 chosenLength;
         static int end_x, end_y;
-        
-        static int my_increment = 0;
-        static int num_lines = 0;
 
         UserString pattern = new UserString();
 
@@ -41,12 +38,31 @@ namespace Turtle
                 System.Windows.Forms.MessageBox.Show("Check the pattern given !!\nInvalid character given (character allowed : a-zA-Z and parenthesis) or parenthesis not open/closed");
                 return;
             }
-            DetectStartPosition();
-            DetectLength();
-            pattern.Userstr = patternBox.Text;
-            centerPanel.Refresh();
-            g = centerPanel.CreateGraphics();
-            Draw(pattern.Userstr, chosenAngle, (int)repeatNumericUpDown.Value, chosenLength);
+            else if (repBraPanel.BackColor == Color.Green)
+            {
+                DetectStartPosition();
+                DetectLength();
+                pattern.Userstr = patternBox.Text;
+                centerPanel.Refresh();
+                g = centerPanel.CreateGraphics();
+
+                L_System system = new L_System();
+                //  Creation String seed, add pattern textbox
+                system.Seed = pattern.Userstr;
+                //  Creation Dictionnaty Rules, all Textbox rules into Store rules 
+                system.Rules = system.Store_Rules(ruleKey1, ruleKey2, ruleValue1, ruleValue2);
+                // Creation Dictionnary Symbols, Stack All textbox and combobox for the symbols and related symbols
+                TextBox[] textboxes = { symbol1, symbol2, symbol3, symbol4, symbol5, symbol6 };
+                Stack<TextBox> symbols = new Stack<TextBox>(textboxes);
+                ComboBox[] comboboxes = { relatedSymbol1, relatedSymbol2, relatedSymbol3, relatedSymbol4, relatedSymbol5, relatedSymbol6 };
+                Stack<ComboBox> relatedSymbols = new Stack<ComboBox>(comboboxes);
+                system.Symbols = system.Store_Symbols(symbols, relatedSymbols);
+                //  Creation Levels, get value from form
+                system.Level = (short)repeatNumericUpDown.Value;
+                BuildPath buildpath = new BuildPath();
+                buildpath.Buildingpath(system);
+                Draw(buildpath, chosenAngle, chosenLength);
+            }
         }
 
         private void randomButton_Click(object sender, EventArgs e)
@@ -60,16 +76,6 @@ namespace Turtle
         {
             pattern.Userstr = patternBox.Text;
             ReponseCheckBrackets();
-        }
-
-        private void topPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void examplesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,6 +124,8 @@ namespace Turtle
         {
             var respBrackets = pattern.CheckParentheses();
             var respFormat = pattern.CheckFormat();
+            Console.WriteLine(respFormat);
+            Console.WriteLine(respBrackets);
             if (respBrackets == true && respFormat == true)
             {
                 repBraPanel.BackColor = Color.Green;
@@ -128,14 +136,14 @@ namespace Turtle
             }
         }
 
-        private void centerPanel_Paint(object sender, PaintEventArgs e)
+        private void Draw(BuildPath allpath, int angle, int length)
         {
+            string path = allpath.Path;
+            Stack<int> stack_x = new Stack<int>();
+            Stack<int> stack_y = new Stack<int>();
+            Stack<int> stack_angle = new Stack<int>();
 
-        }
-
-        private void Draw(string partern, int angle, int repeats, int length)
-        {
-            foreach (char action in pattern.Userstr)
+            foreach (char action in path)
             {
                 if (action.Equals('+'))
                 {
@@ -147,16 +155,20 @@ namespace Turtle
                 }
                 else if (action.Equals('['))
                 {
-                    branch_start_x = start_x;
-                    branch_start_y = start_y;
+                    stack_x.Push(start_x);
+                    stack_y.Push(start_y);
+                    stack_angle.Push(angle);
+                    continue;
                 }
                 else if (action.Equals(']'))
                 {
-                    start_x = branch_start_x;
-                    start_y = branch_start_y;
+                    start_x = stack_x.Pop();
+                    start_y = stack_y.Pop();
+                    angle = stack_angle.Pop();
+                    continue;
                 }
-                
-                if (action.Equals('+') || action.Equals('-') || action.Equals('S'))
+                Console.WriteLine(angle);
+                if (action.Equals('+') || action.Equals('-') || action.Equals('F'))
                 {
                     // Modifiy Cos and Sin for each start
                     end_x = (int)(start_x + Math.Cos(angle * .017453292519) * length);
@@ -170,14 +182,17 @@ namespace Turtle
                     start_y = end_y;
                     g.DrawLines(myPen, points);
                 }
+                else if (action.Equals('f'))
+                {
+                    continue;
+                }
             }
             return;
         }
-
-
+        
         private void DetectLength()
         {
-            chosenLength = (int)lengthNumericUpDown.Value;
+            chosenLength = (short)lengthNumericUpDown.Value;
         }
 
         private void DetectStartPosition()
